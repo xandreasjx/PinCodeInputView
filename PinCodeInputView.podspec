@@ -25,7 +25,7 @@ You can create an input part of PinCode to use for phone number authentication.
 
   s.platform     = :ios, "10.0"
 
-  s.source = { :git => "https://github.com/shima11/PinCodeInputView.git", :tag => "#{s.version}"}
+  s.source = { :git => "https://github.com/xandreasjx/PinCodeInputView.git", :tag => "#{s.version}"}
 
   s.source_files = "PinCodeInputView", "PinCodeInputView/**/*.{h,m,swift}"
 
