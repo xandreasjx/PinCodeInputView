@@ -130,8 +130,12 @@ public class PinCodeInputView<T: UIView & ItemType>: UIControl, UITextInputTrait
     }
     
     public func set(appearance closure: (Int) -> ItemAppearance) {
+        guard itemSize != nil else {
+            fatalError("Item size is not set")
+        }
+        
         items.enumerated().forEach { (index, value) in
-            value.itemView.set(appearance: closure(index))
+            value.itemView.set(appearance: closure(index), itemSize: self.itemSize!)
         }
     }
     

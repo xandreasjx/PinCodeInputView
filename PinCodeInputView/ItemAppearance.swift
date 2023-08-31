@@ -9,8 +9,6 @@
 import Foundation
 
 public struct ItemAppearance {
-    
-    public let itemSize: CGSize
     public let font: UIFont
     public let textColor: UIColor
     public let backgroundColor: UIColor
@@ -19,15 +17,12 @@ public struct ItemAppearance {
 	public let borderColor: UIColor
     
     public init(
-        itemSize: CGSize,
         font: UIFont,
         textColor: UIColor,
         backgroundColor: UIColor,
         cursorColor: UIColor,
         cornerRadius: CGFloat,
 		borderColor: UIColor = UIColor.clear) {
-        
-        self.itemSize = itemSize
         self.font = font
         self.textColor = textColor
         self.backgroundColor = backgroundColor

@@ -93,8 +93,8 @@ public class ItemView: UIView, ItemType {
         )
     }
     
-    public func set(appearance: ItemAppearance) {
-        bounds.size = appearance.itemSize
+    public func set(appearance: ItemAppearance, itemSize: ItemSize) {
+        bounds.size = itemSize.itemSize
         label.font = appearance.font
         label.textColor = appearance.textColor
         cursor.backgroundColor = appearance.cursorColor
