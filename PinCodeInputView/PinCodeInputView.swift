@@ -46,7 +46,7 @@ public class PinCodeInputView<T: UIView & ItemType>: UIControl, UITextInputTrait
     private let itemFactory: () -> UIView
     private var appearance: ItemAppearance?
     private var itemSize: ItemSize?
-	private let autoResizes: Bool
+    private let autoResizes: Bool
 
     // MARK: - UITextInputTraits
 
@@ -57,6 +57,7 @@ public class PinCodeInputView<T: UIView & ItemType>: UIControl, UITextInputTrait
     public var keyboardAppearance = UIKeyboardAppearance.default
     public var returnKeyType = UIReturnKeyType.done
     public var enablesReturnKeyAutomatically = true
+    public var settableDigit: Int = 100
 
     // MARK: - Initializers
     
@@ -64,7 +65,7 @@ public class PinCodeInputView<T: UIView & ItemType>: UIControl, UITextInputTrait
         digit: Int,
         itemSpacing: CGFloat,
         itemFactory: @escaping (() -> T),
-		autoresizes: Bool = false) {
+        autoresizes: Bool = false) {
         
         self.digit = digit
         self.itemSpacing = itemSpacing
@@ -124,9 +125,9 @@ public class PinCodeInputView<T: UIView & ItemType>: UIControl, UITextInputTrait
     
     public func set(itemSize: ItemSize) {
         self.itemSize = itemSize
-		if autoResizes {
-			self.itemSize = ItemSize(itemSize: CGSize(width: (self.bounds.width - (self.itemSpacing * CGFloat(self.digit))) / CGFloat(self.digit), height: itemSize.itemSize.height))
-		}
+        if autoResizes {
+            self.itemSize = ItemSize(itemSize: CGSize(width: (self.bounds.width - (self.itemSpacing * CGFloat(self.digit))) / CGFloat(self.digit), height: itemSize.itemSize.height))
+        }
     }
     
     public func set(appearance closure: (Int) -> ItemAppearance) {
@@ -172,7 +173,7 @@ public class PinCodeInputView<T: UIView & ItemType>: UIControl, UITextInputTrait
     // MARK: - UIKeyInput
 
     public func insertText(_ textToInsert: String) {
-        if isEnabled && text.count + textToInsert.count <= digit && Validator.isOnlyNumeric(text: textToInsert) {
+        if text.count < settableDigit && isEnabled && text.count + textToInsert.count <= digit && Validator.isOnlyNumeric(text: textToInsert) {
             text.append(textToInsert)
             sendActions(for: .editingChanged)
         }
